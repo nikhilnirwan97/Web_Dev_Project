@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimalist Gallery - View Media</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">Gallery</div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Discover</a></li>
+                <li><a href="upload.html">Upload</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="view-container">
+        <!-- Back button -->
+        <a href="index.html" class="back-link">← Back to Gallery</a>
+
+        <!-- Media Display -->
+        <div class="view-media-wrapper">
+            <span class="media-badge view-badge">Image</span>
+            <div class="placeholder-img view-placeholder"></div>
+        </div>
+
+        <!-- Media Info -->
+        <div class="view-info">
+            <div class="view-header">
+                <h1 class="view-title">Minimal Space</h1>
+                <div class="view-actions">
+                    <button class="btn-action download">Download</button>
+                    <button class="btn-action edit">Edit</button>
+                    <button class="btn-action delete">Delete</button>
+                </div>
+            </div>
+            
+            <div class="view-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Uploaded</span>
+                    <span class="meta-value">Today, 2:45 PM</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Size</span>
+                    <span class="meta-value">4.2 MB</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Format</span>
+                    <span class="meta-value">JPG (3840x2160)</span>
+                </div>
+            </div>
+
+            <div class="view-description">
+                <h3>Description</h3>
+                <p>An exploration of deep blacks and sharp contrasts in a minimalist 3D environment. This acts as a placeholder description for your database items. When connected to your backend, this paragraph will render dynamically based on the item clicked.</p>
+            </div>
+            
+            <div class="view-tags">
+                <span class="tag">#minimal</span>
+                <span class="tag">#darkmode</span>
+                <span class="tag">#space</span>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Minimal Gallery.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimalist Gallery - Images</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">Gallery</div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Discover</a></li>
+                <li><a href="upload.html">Upload</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="controls-section">
+        <div class="search-bar">
+            <input type="text" placeholder="Search images..." aria-label="Search gallery">
+        </div>
+        <div class="filters" aria-label="Filter media types">
+            <a href="index.html" class="filter-btn">All</a>
+            <a href="videos.html" class="filter-btn">Videos</a>
+            <a href="images.html" class="filter-btn active">Images</a>
+            <a href="raw.html" class="filter-btn">Raw</a>
+        </div>
+    </section>
+
+    <main>
+        <div class="gallery-container">
+            
+            <!-- Media Card 1 -->
+            <article class="media-card" data-id="1">
+                <div class="card-content">
+                    <a href="view.html" class="card-overlay-link" aria-label="View Media"></a>
+                    <div class="media-thumbnail">
+                        <span class="media-badge">Image</span>
+                        <div class="placeholder-img"></div>
+                    </div>
+                    <div class="card-details">
+                        <h2 class="card-title">Minimal Space</h2>
+                        <div class="card-meta">
+                            <span>4.2 MB</span>
+                            <span><time datetime="2023-10-25">Today</time></span>
+                        </div>
+                        <div class="card-actions" style="position: relative; z-index: 2;">
+                            <button class="btn-action edit" aria-label="Edit Minimal Space">Edit</button>
+                            <button class="btn-action delete" aria-label="Delete Minimal Space">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Media Card 3 -->
+            <article class="media-card" data-id="3">
+                <div class="card-content">
+                    <a href="view.html" class="card-overlay-link" aria-label="View Media"></a>
+                    <div class="media-thumbnail">
+                        <span class="media-badge">Image</span>
+                        <div class="placeholder-img"></div>
+                    </div>
+                    <div class="card-details">
+                        <h2 class="card-title">Monochrome Flow</h2>
+                        <div class="card-meta">
+                            <span>1.2 MB</span>
+                            <span><time datetime="2023-10-12">Oct 12</time></span>
+                        </div>
+                        <div class="card-actions" style="position: relative; z-index: 2;">
+                            <button class="btn-action edit" aria-label="Edit Monochrome Flow">Edit</button>
+                            <button class="btn-action delete" aria-label="Delete Monochrome Flow">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Media Card 6 -->
+            <article class="media-card" data-id="6">
+                <div class="card-content">
+                    <a href="view.html" class="card-overlay-link" aria-label="View Media"></a>
+                    <div class="media-thumbnail">
+                        <span class="media-badge">Image</span>
+                        <div class="placeholder-img"></div>
+                    </div>
+                    <div class="card-details">
+                        <h2 class="card-title">Urban Shadows</h2>
+                        <div class="card-meta">
+                            <span>3.8 MB</span>
+                            <span><time datetime="2023-10-05">Oct 05</time></span>
+                        </div>
+                        <div class="card-actions" style="position: relative; z-index: 2;">
+                            <button class="btn-action edit" aria-label="Edit Urban Shadows">Edit</button>
+                            <button class="btn-action delete" aria-label="Delete Urban Shadows">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Minimal Gallery.</p>
+    </footer>
+
+</body>
+</html>

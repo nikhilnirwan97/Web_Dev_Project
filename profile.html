@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimalist Gallery - Profile</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">Gallery</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Discover</a></li>
+                <li><a href="upload.html">Upload</a></li>
+                <li><a href="profile.html" class="active">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="profile-container">
+        <!-- Profile Header Area -->
+        <section class="profile-header">
+            <div class="profile-avatar">
+                <span class="avatar-initial">A</span>
+            </div>
+            <div class="profile-info">
+                <h1 class="profile-name">Admin User</h1>
+                <p class="profile-bio">Digital artist and curator exploring minimalist aesthetics.</p>
+                <div class="profile-stats">
+                    <div class="stat">
+                        <span class="stat-value">142</span>
+                        <span class="stat-label">Uploads</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">2.4 GB</span>
+                        <span class="stat-label">Storage</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">8</span>
+                        <span class="stat-label">Galleries</span>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-actions">
+                <button class="btn-primary" style="margin-top: 0;">Edit Profile</button>
+            </div>
+        </section>
+
+        <hr class="profile-divider">
+
+        <!-- User's Media (Reusing Gallery CSS) -->
+        <section class="profile-gallery">
+            <h2 class="section-title">Your Recent Uploads</h2>
+            <div class="gallery-container">
+                
+                <!-- Media Card 1 -->
+                <article class="media-card" data-id="1">
+                    <div class="card-content">
+                    <a href="view.html" class="card-overlay-link" aria-label="View Media"></a>
+                        <div class="media-thumbnail">
+                            <span class="media-badge">Image</span>
+                            <div class="placeholder-img"></div>
+                        </div>
+                        <div class="card-details">
+                            <h2 class="card-title">Minimal Space</h2>
+                            <div class="card-meta">
+                                <span>4.2 MB</span>
+                                <span><time datetime="2023-10-25">Today</time></span>
+                            </div>
+                            <div class="card-actions" style="position: relative; z-index: 2;">
+                                <button class="btn-action edit">Edit</button>
+                                <button class="btn-action delete">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Media Card 4 -->
+                <article class="media-card" data-id="4">
+                    <div class="card-content">
+                    <a href="view.html" class="card-overlay-link" aria-label="View Media"></a>
+                        <div class="media-thumbnail">
+                            <span class="media-badge">Raw</span>
+                            <div class="placeholder-img"></div>
+                        </div>
+                        <div class="card-details">
+                            <h2 class="card-title">Studio Session</h2>
+                            <div class="card-meta">
+                                <span>2.4 GB</span>
+                                <span><time datetime="2023-10-10">Oct 10</time></span>
+                            </div>
+                            <div class="card-actions" style="position: relative; z-index: 2;">
+                                <button class="btn-action edit">Edit</button>
+                                <button class="btn-action delete">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+    <footer style="margin-top: auto;">
+        <p>&copy; 2023 Minimal Gallery.</p>
+    </footer>
+
+</body>
+</html>

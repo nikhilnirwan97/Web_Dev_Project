@@ -1,0 +1,644 @@
+/* ==========================================================================
+   CSS VARIABLES (Clean, minimalist dark palette)
+   ========================================================================== */
+   :root {
+    --bg-color: #000000; /* Pure black */
+    --surface-color: #111111; /* Very dark grey for cards */
+    --border-color: #333333; /* Subtle borders */
+    --text-primary: #f0f0f0; /* Off-white text */
+    --text-secondary: #888888; /* Grey secondary text */
+    --accent-color: #ffffff; /* White accents */
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --transition-speed: 0.3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-family);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 5%;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.logo {
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color var(--transition-speed);
+}
+
+nav a:hover, nav a.active {
+    color: var(--accent-color);
+}
+
+/* ==========================================================================
+   CONTROLS (Search & Filters)
+   ========================================================================== */
+.controls-section {
+    padding: 2rem 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.search-bar {
+    width: 100%;
+    max-width: 500px;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 0.8rem 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color var(--transition-speed);
+}
+
+.search-bar input:focus {
+    border-color: var(--accent-color);
+}
+
+.filters {
+    display: flex;
+    gap: 1rem;
+}
+
+.filter-btn {
+    background: transparent;
+    color: var(--text-secondary);
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding-bottom: 0.2rem;
+    transition: color var(--transition-speed);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    color: var(--accent-color);
+    border-bottom: 1px solid var(--accent-color);
+}
+
+/* ==========================================================================
+   GALLERY (Uniform CSS Grid)
+   ========================================================================== */
+main {
+    padding: 2rem 5%;
+}
+
+.gallery-container {
+    /* Uniform CSS Grid */
+    display: grid;
+    /* Automatically fit as many 300px columns as possible */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.media-card {
+    /* Keeps the gentle hover animation */
+    animation: gentle-float 8s ease-in-out infinite;
+}
+
+/* Stagger the subtle floating animation */
+.media-card:nth-child(even) { animation-delay: -2s; animation-duration: 9s; }
+.media-card:nth-child(3n) { animation-delay: -4s; animation-duration: 7s; }
+
+/* ==========================================================================
+   CARD OPENABLE LINK STYLES
+   ========================================================================== */
+.card-content {
+    background: var(--surface-color);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform var(--transition-speed);
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+    position: relative; /* ensure overlay link works relative to this */
+}
+
+/* The invisible overlay that makes the card clickable */
+.card-overlay-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    cursor: pointer;
+}
+
+/* Pause animation and do a small lift on hover */
+.media-card:hover {
+    animation-play-state: paused;
+}
+
+.media-card:hover .card-content {
+    transform: translateY(-5px);
+}
+
+.media-thumbnail {
+    position: relative;
+    width: 100%;
+}
+
+.placeholder-img {
+    width: 100%;
+    /* Enforces a uniform size/aspect ratio (16:9 widescreen format) */
+    aspect-ratio: 16 / 9;
+    background: #1a1a1a;
+    object-fit: cover; /* Ensures real images fill the aspect ratio without stretching */
+}
+
+/* Ensure real images in the future will also use the same aspect ratio */
+.media-thumbnail img, 
+.media-thumbnail video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+}
+
+.media-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 0.7rem;
+    color: var(--bg-color);
+    background: var(--text-primary);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    z-index: 2;
+}
+
+.card-details {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    /* Pushes actions to the bottom if the title wraps to two lines */
+    flex-grow: 1; 
+}
+
+.card-title {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.card-meta {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.card-actions {
+    display: flex;
+    gap: 1rem;
+    opacity: 0;
+    transition: opacity var(--transition-speed);
+    margin-top: auto; /* Push to bottom */
+    /* Ensure buttons are clickable above the card overlay link */
+    position: relative;
+    z-index: 2;
+}
+
+.media-card:hover .card-actions {
+    opacity: 1;
+}
+
+.btn-action {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.btn-action:hover {
+    color: var(--text-primary);
+}
+
+/* ==========================================================================
+   VIEW MEDIA PAGE
+   ========================================================================== */
+.view-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.back-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color var(--transition-speed);
+    align-self: flex-start;
+}
+
+.back-link:hover {
+    color: var(--accent-color);
+}
+
+.view-media-wrapper {
+    width: 100%;
+    background: var(--surface-color);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid var(--border-color);
+}
+
+.view-badge {
+    font-size: 0.9rem;
+    padding: 0.4rem 1rem;
+}
+
+.view-placeholder {
+    aspect-ratio: auto; /* Allow natural height in view mode */
+    min-height: 500px;
+    width: 100%;
+    background: #1a1a1a;
+}
+
+.view-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.view-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.view-title {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.view-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.view-actions .btn-action {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    transition: all var(--transition-speed);
+}
+
+.view-actions .btn-action.download {
+    background: var(--text-primary);
+    color: var(--bg-color);
+}
+
+.view-actions .btn-action:hover {
+    border-color: var(--accent-color);
+}
+
+.view-meta {
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap;
+    background: var(--surface-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.meta-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.meta-value {
+    font-size: 1rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.view-description h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+}
+
+.view-description p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 800px;
+}
+
+.view-tags {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: var(--surface-color);
+    color: var(--text-secondary);
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    border: 1px solid var(--border-color);
+}
+
+/* ==========================================================================
+   UPLOAD FORM
+   ========================================================================== */
+.upload-container {
+    max-width: 600px;
+    margin: 4rem auto;
+    padding: 2rem;
+    background: var(--surface-color);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.page-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.upload-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    text-align: center;
+}
+
+.upload-area:hover {
+    border-color: var(--accent-color);
+    background: rgba(255,255,255,0.02);
+}
+
+.upload-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    opacity: 0.7;
+}
+
+.upload-text {
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.upload-area input[type="file"] {
+    display: none; 
+}
+
+.upload-form input[type="text"],
+.upload-form select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color var(--transition-speed);
+}
+
+.upload-form input[type="text"]:focus,
+.upload-form select:focus {
+    border-color: var(--accent-color);
+}
+
+.upload-form select option {
+    background: var(--bg-color);
+    color: var(--text-primary);
+}
+
+.btn-primary {
+    background: var(--text-primary);
+    color: var(--bg-color);
+    border: none;
+    padding: 1rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity var(--transition-speed);
+    margin-top: 1rem;
+}
+
+.btn-primary:hover {
+    opacity: 0.8;
+}
+
+/* ==========================================================================
+   PROFILE PAGE
+   ========================================================================== */
+.profile-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 3rem 5%;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: var(--surface-color);
+    border: 2px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: var(--text-primary);
+    flex-shrink: 0;
+}
+
+.profile-info {
+    flex-grow: 1;
+}
+
+.profile-name {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.profile-bio {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    max-width: 500px;
+}
+
+.profile-stats {
+    display: flex;
+    gap: 2rem;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-value {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.profile-divider {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 3rem 0;
+}
+
+.section-title {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+}
+
+/* ==========================================================================
+   ANIMATIONS
+   ========================================================================== */
+@keyframes gentle-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+footer {
+    text-align: center;
+    padding: 3rem 0;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    margin-top: auto;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    .gallery-container { 
+        grid-template-columns: 1fr; /* Force 1 column on mobile */
+    }
+    
+    /* Disable floating on mobile for cleaner feel */
+    .media-card { animation: none; }
+    .card-actions { opacity: 1; }
+
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+    .profile-stats {
+        justify-content: center;
+    }
+    
+    .view-meta {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
