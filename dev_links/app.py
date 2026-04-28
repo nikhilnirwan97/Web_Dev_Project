@@ -2,7 +2,14 @@ from flask import Flask, render_template, request, jsonify, session, redirect, u
 from db import get_connection
 import os
 
-app = Flask(__name__)
+# Get the absolute path of the directory containing this file
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+app = Flask(
+    __name__,
+    template_folder=os.path.join(BASE_DIR, 'templates'),
+    static_folder=os.path.join(BASE_DIR, 'static')
+)
 # using a simple secret key since this is just a quick project
 app.secret_key = 'super_secret_dev_key_123'
 
