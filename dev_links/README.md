@@ -4,56 +4,26 @@ Hey! This is my 1st-year B.Tech project. It's a simple bookmarking tool where de
 
 ---
 
-## 🎨 My Rough Plan & Diagrams
+## 🎨 My Rough Plan
 
-Before coding, I made a rough plan of how things would connect. Here are some simple diagrams I made!
+Before coding, I made a rough plan of how things would connect. Here is how it all works:
 
 ### How everything connects
-Here is how the website talks to the backend and the database:
-```mermaid
-graph TD
-    Frontend[Frontend (HTML, CSS, JS)]
-    Backend[Backend (app.py with Flask)]
-    Database[(Supabase PostgreSQL)]
-    
-    Frontend -- "Sends form data" --> Backend
-    Backend -- "Saves or gets data" --> Database
-    Database -- "Gives back data" --> Backend
-    Backend -- "Sends data to screen" --> Frontend
-```
+The website has three main parts:
+1. **Frontend**: The actual website you see (built with basic HTML, CSS, and JS). It sends form data like your new links to the backend.
+2. **Backend**: This is the brain of the app (built with Python and Flask). It handles the logic and talks to the database.
+3. **Database**: I'm using Supabase PostgreSQL to store all the users and their saved links.
 
 ### How the app works (User Flow)
-Here is the path a user takes when they visit the site:
-```mermaid
-flowchart LR
-    Start((Start)) --> Auth{Logged In?}
-    Auth -- No --> Login[Login or Register Page]
-    Auth -- Yes --> Dashboard[My Links Dashboard]
-    
-    Login --> Dashboard
-    
-    Dashboard --> Add[Add a new link]
-    Dashboard --> Edit[Edit a link]
-    Dashboard --> Delete[Delete a link]
-```
+When you visit the site, here is what you can do:
+- First, you either log in or register for a new account.
+- Once you are logged in, you go to your "My Links Dashboard".
+- From the dashboard, you can add a new link, edit an existing link, or delete a link.
 
 ### Database Tables
-I kept the database super simple. Just two tables!
-```mermaid
-erDiagram
-    USERS {
-        int id PK
-        string username
-        string password
-    }
-    LINKS {
-        int id PK
-        string title
-        string url
-        string tag
-        int user_id FK
-    }
-    
+I kept the database super simple. It just has two tables:
+- **USERS**: Stores your `id`, `username`, and `password`.
+- **LINKS**: Stores the `id`, `title`, `url`, `tag`, and the `user_id` so we know who saved it.
 
 ---
 
@@ -76,23 +46,23 @@ erDiagram
    `DATABASE_URL=your_connection_url_here`
 6. Run this SQL in the Supabase SQL Editor to make the tables:
 
-```sql
--- Create users table
-CREATE TABLE users (
-  id SERIAL PRIMARY KEY,
-  username TEXT UNIQUE NOT NULL,
-  password TEXT NOT NULL
-);
+   ```sql
+   -- Create users table
+   CREATE TABLE users (
+     id SERIAL PRIMARY KEY,
+     username TEXT UNIQUE NOT NULL,
+     password TEXT NOT NULL
+   );
 
--- Create links table
-CREATE TABLE links (
-  id SERIAL PRIMARY KEY,
-  title TEXT NOT NULL,
-  url TEXT NOT NULL,
-  tag TEXT,
-  user_id INTEGER REFERENCES users(id)
-);
-```
+   -- Create links table
+   CREATE TABLE links (
+     id SERIAL PRIMARY KEY,
+     title TEXT NOT NULL,
+     url TEXT NOT NULL,
+     tag TEXT,
+     user_id INTEGER REFERENCES users(id)
+   );
+   ```
 
 ### Running Locally
 1. **Install python packages:**
