@@ -1,9 +1,16 @@
 from flask import Flask, render_template, request, jsonify, session, redirect, url_for
-from db import get_connection
 import os
+import sys
 
 # Get the absolute path of the directory containing this file
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Add this directory to sys.path so Python can find db.py when running on Vercel
+if BASE_DIR not in sys.path:
+    sys.path.append(BASE_DIR)
+
+from db import get_connection
+
 
 app = Flask(
     __name__,
